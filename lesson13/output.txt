@@ -1,0 +1,12 @@
+vagrant@ubuntu:~$ ./script1.sh 
+vagrant@ubuntu:~$ ./script2.sh 
+The number of files in myfolder is 5
+Files with permissions 777: 
+myfolder/2
+Found empty files that will be deleted: 
+myfolder/5
+myfolder/2
+myfolder/4
+First lines will be deleted: 
+Sat Jul 16 13:58:58 UTC 2022
+13829
