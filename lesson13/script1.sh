@@ -1,3 +1,5 @@
+#!/bin/bash
+
 mkdir -p myfolder       # Creates folder if it doesn't exist
 
 cd myfolder

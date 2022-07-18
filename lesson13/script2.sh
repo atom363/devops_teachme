@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Count number of files in myfolder
 ls myfolder | echo "The number of files in myfolder is $( wc -l)"
 
