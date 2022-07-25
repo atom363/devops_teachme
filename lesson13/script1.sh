@@ -2,11 +2,11 @@
 
 mkdir -p ~/myfolder       # Creates folder if it doesn't exist
 
-cd ~/myfolder
-echo "Hello!" > 1
-date >> 1
-touch 2
-chmod 777 2
-echo "$RANDOM" > 3
-touch 4
-touch 5
+cd ~/myfolder || exit
+echo "Hello!" > file1
+date >> file1
+touch file2
+chmod 777 file2
+echo "$RANDOM" > file3
+touch file4
+touch file5
