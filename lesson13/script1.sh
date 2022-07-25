@@ -1,8 +1,8 @@
 #!/bin/bash
 
-mkdir -p myfolder       # Creates folder if it doesn't exist
+mkdir -p ~/myfolder       # Creates folder if it doesn't exist
 
-cd myfolder
+cd ~/myfolder
 echo "Hello!" > 1
 echo "$(date)" >> 1
 touch 2
