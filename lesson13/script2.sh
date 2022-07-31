@@ -11,7 +11,7 @@ find ~/myfolder/ -type f -perm 0777 -print -exec chmod 664 {} \;
 echo "Found empty files that will be deleted: "
 find ~/myfolder -type f -empty -print -delete
 
-# Delete first line in all files
-echo "First lines will be deleted: "
-sed '1d' ~/myfolder/*
-sed -i '1d' ~/myfolder/*
+# Delete all lines except first in all files
+echo "Lines will be deleted: "
+sed '2,$d' ~/myfolder/*
+sed -i '2,$d' ~/myfolder/*
