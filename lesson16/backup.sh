@@ -57,16 +57,18 @@ esac
 
 sudo apt install tree zip rsync -y > /dev/null
 
-touch $PATH_FOLDER/meta.txt
-whoami > $PATH_FOLDER/meta.txt
-date >> $PATH_FOLDER/meta.txt
-echo "Mode: $MODE" >> $PATH_FOLDER/meta.txt
-echo "$interactive" >> $PATH_FOLDER/meta.txt
+touch "$PATH_FOLDER"/meta.txt
+whoami > "$PATH_FOLDER"/meta.txt
+{
+    date 
+    echo "Mode: $MODE" 
+    echo "$interactive" 
+} >> "$PATH_FOLDER"/meta.txt
 
-tree -a $PATH_FOLDER >> $PATH_FOLDER/meta.txt
+tree -a "$PATH_FOLDER" >> "$PATH_FOLDER"/meta.txt
 
 #archivation 
-zip -r ~/"$archive_name".zip $PATH_FOLDER
+zip -r ~/"$archive_name".zip "$PATH_FOLDER"
 
 #cron
 crontab -l | grep "$cron_schedule ~/backup.sh $1 $2 $3" || (crontab -l 2>/dev/null; echo "$cron_schedule ~/backup.sh $1 $2 $3") | crontab -
