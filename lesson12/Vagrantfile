@@ -1,0 +1,73 @@
+$script = <<"END"
+apt update
+apt install -y rsync
+sed -i 's/RSYNC_ENABLE=false/RSYNC_ENABLE=true/g' /etc/default/rsync
+/etc/init.d/rsync start
+mkdir /rsync
+truncate -s 5M /rsync/small
+mkdir /rsync/big-files
+truncate -s 3G /rsync/big-files/big
+cat <<\EOF > /etc/rsyncd.conf
+max connections = 10
+ 
+[data1]
+    path = /rsync
+    comment = Public folders
+    read only = yes
+    list = yes
+    auth users = rsync_d1
+    secrets file = /etc/rsyncd.scrt
+    hosts allow = localhost 172.18.0.0/24
+    hosts deny = *
+EOF
+cat <<\EOF > /etc/rsyncd.scrt
+rsync_d1:password1
+EOF
+chmod 600 /etc/rsyncd.scrt
+/etc/init.d/rsync restart
+END
+
+$script_client = <<"END"
+apt update
+apt install -y rsync
+mkdir /rsync
+sleep 10
+env RSYNC_PASSWORD=password1 rsync -avv rsync_d1@172.18.0.2::data1 /rsync/
+END
+
+Vagrant.configure(2) do |config|
+  # Path to ssh key
+  config.ssh.private_key_path = "/Users/boriskoltun/.ssh/id_ed25519"
+
+  # VM definition
+  config.vm.define "rsync-server", primary: true do |srv|
+    srv.vm.hostname = "rsync-server"
+    srv.vm.network :private_network, ip: "172.18.0.2"
+    srv.vm.provision "shell", inline: $script
+  end
+  config.vm.define "client" do |client|
+    client.vm.hostname = "client"
+    client.vm.network :private_network, ip: "172.18.0.3"
+    client.vm.provision "shell", inline: $script_client
+  end
+
+  # Custom configuration for docker
+  config.vm.provider "docker" do |d, override|
+    # docker doesnt use boxes
+    override.vm.box = nil
+
+    # this is where your Dockerfile lives
+    d.build_dir = "."
+
+    # Make sure it sets up ssh with the Dockerfile
+    # Vagrant is pretty dependent on ssh
+    override.ssh.insert_key = true
+    d.has_ssh = true
+
+    # Configure Docker to allow access to more resources
+    d.privileged = true
+  end
+
+# ...
+
+end

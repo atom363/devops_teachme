@@ -1,0 +1,375 @@
+{\rtf1\ansi\ansicpg1251\cocoartf2636
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Menlo-Bold;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red180\green36\blue25;\red47\green180\blue29;
+}
+{\*\expandedcolortbl;;\csgray\c0;\cssrgb\c76411\c21697\c12527;\cssrgb\c20241\c73898\c14950;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 boriskoltun@MacBook-Air-Boris Vagrant % vagrant up       \
+Bringing machine 'rsync-server' up with 'docker' provider...\
+Bringing machine 'client' up with 'docker' provider...\
+
+\f1\b ==> client: Creating and configuring docker networks...
+\f0\b0 \
+
+\f1\b ==> client: Building the container from a Dockerfile...
+\f0\b0 \
+
+\f1\b ==> rsync-server: Creating and configuring docker networks...
+\f0\b0 \
+
+\f1\b ==> rsync-server: Building the container from a Dockerfile...
+\f0\b0 \
+    client: #1 [internal] load build definition from Dockerfile\
+    client: #1 sha256:15510fc02965c1d87e9e51905284a54036fa1fac3e55022e0438c00467be2c1f\
+    client: #1 transferring dockerfile: 419B done\
+    client: #1 DONE 0.0s\
+    client: \
+    client: #2 [internal] load .dockerignore\
+    client: #2 sha256:658cfb4e2508e77dcc8fda21a996d9516c547983b9657d7dee1f3a626b571120\
+    client: #2 transferring context: 2B done\
+    client: #2 DONE 0.0s\
+    client: \
+    client: #3 [internal] load metadata for docker.io/library/ubuntu:latest\
+    client: #3 sha256:abd44fdc5704a1f31ce24272a9c459712f2a16d9c7c7ce9bcc7a9b6c11e01aa9\
+    rsync-server: #1 [internal] load build definition from Dockerfile\
+    rsync-server: #1 sha256:73ef87beb5e3c0f6caf17f23120e49d462c461dbe0ddf8e6255083c59ef55189\
+    rsync-server: #1 transferring dockerfile: 419B done\
+    rsync-server: #1 DONE 0.0s\
+    rsync-server: \
+    rsync-server: #2 [internal] load .dockerignore\
+    rsync-server: #2 sha256:6d3fd5fcdacbe3ee19d6a21b7f2e2131a4d9367a32a3987cd141726ccae97caf\
+    rsync-server: #2 transferring context: 2B done\
+    rsync-server: #2 DONE 0.0s\
+    rsync-server: \
+    rsync-server: #3 [internal] load metadata for docker.io/library/ubuntu:latest\
+    rsync-server: #3 sha256:abd44fdc5704a1f31ce24272a9c459712f2a16d9c7c7ce9bcc7a9b6c11e01aa9\
+    rsync-server: #3 DONE 1.3s\
+    client: #3 DONE 1.6s\
+    rsync-server: \
+    rsync-server: #4 [ 1/17] FROM docker.io/library/ubuntu:latest@sha256:b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac\
+    rsync-server: #4 sha256:a1241956e44e04eee873e401b1b99204edb39bb7793f7f24fa4077499928974e\
+    rsync-server: #4 DONE 0.0s\
+    rsync-server: \
+    rsync-server: #7 [ 4/17] RUN useradd --create-home -s /bin/bash vagrant\
+    rsync-server: #7 sha256:095394ffb1949f9a87e65f112ded489a3d2e582a2d9c5383ca179ed1375f3a78\
+    rsync-server: #7 CACHED\
+    rsync-server: \
+    rsync-server: #16 [13/17] RUN sed -i -e 's/Defaults.*requiretty/#&/' /etc/sudoers\
+    rsync-server: #16 sha256:137bed0bbab527b2211f244d87bf580397ce31c10212b60c3b5d5ea25dd2418a\
+    rsync-server: #16 CACHED\
+    rsync-server: \
+    rsync-server: #9 [ 6/17] RUN echo 'vagrant ALL = NOPASSWD: ALL' > /etc/sudoers.d/vagrant\
+    rsync-server: #9 sha256:2c3cc7cc348b72763e54e26469e6d974eb925369849bb18980039e845acf7f79\
+    rsync-server: #9 CACHED\
+    rsync-server: \
+    rsync-server: #11 [ 8/17] RUN mkdir -p /home/vagrant/.ssh\
+    rsync-server: #11 sha256:c6c47f92e3e9fb0e0ac879c36c26dbb6d9507adc2166fcb4a4fac6eac14c8294\
+    rsync-server: #11 CACHED\
+    rsync-server: \
+    rsync-server: #14 [11/17] RUN chmod 600 /home/vagrant/.ssh/authorized_keys\
+    rsync-server: #14 sha256:10ca4440ed2b5e28a8bb2e8f8d0c5a2794145a86db814335a13df8211ccab33a\
+    rsync-server: #14 CACHED\
+    rsync-server: \
+    rsync-server: #18 [15/17] RUN echo 'll = "ls -lah"' >> /etc/environment\
+    rsync-server: #18 sha256:09085b29850c2ed23aa6549f279161f33addc30ee00d04f42561b3df1ffcd011\
+    rsync-server: #18 CACHED\
+    rsync-server: \
+    rsync-server: #10 [ 7/17] RUN chmod 440 /etc/sudoers.d/vagrant\
+    rsync-server: #10 sha256:40fe226328114273b805b819c60c500811c4179d250c221d706a830b3035c6d0\
+    rsync-server: #10 CACHED\
+    rsync-server: \
+    rsync-server: #12 [ 9/17] RUN chmod 700 /home/vagrant/.ssh\
+    rsync-server: #12 sha256:f4e101e8ddf47e235c8a1c23d508e28d6b806acb20d4236cd372b1f4c186c232\
+    rsync-server: #12 CACHED\
+    rsync-server: \
+    rsync-server: #6 [ 3/17] RUN apt-get install -y --no-install-recommends ssh sudo libffi-dev systemd openssh-server net-tools iproute2 vim\
+    rsync-server: #6 sha256:b27e7919875f64c222f502bd184f483b29a7903201af61dc1ae8e41caaa9cec1\
+    rsync-server: #6 CACHED\
+    rsync-server: \
+    rsync-server: #19 [16/17] RUN mkdir /var/run/sshd\
+    rsync-server: #19 sha256:887dde3fe739ebd543ebe3539d2dd8a3a3fd5a8753440507ee6c7d44392e8fc2\
+    rsync-server: #19 CACHED\
+    rsync-server: \
+    rsync-server: #15 [12/17] RUN chown -R vagrant:vagrant /home/vagrant/.ssh\
+    rsync-server: #15 sha256:1d4c3deaa98d4df983e3c3b65f6f0237d2512ada93fffa55ee5c3106e7e9a9ae\
+    rsync-server: #15 CACHED\
+    rsync-server: \
+    rsync-server: #5 [ 2/17] RUN apt-get update -y && apt-get dist-upgrade -y\
+    rsync-server: #5 sha256:4b06f7951164aa5af988465798d6ee491499e84facf3260adf53ea7f080ec82e\
+    rsync-server: #5 CACHED\
+    rsync-server: \
+    rsync-server: #8 [ 5/17] RUN echo -n 'vagrant:vagrant' | chpasswd\
+    rsync-server: #8 sha256:71c9a268f07b0997945ab01480c00f22a7d04bd8fe6bc7e626f02c4af5d98db3\
+    rsync-server: #8 CACHED\
+    rsync-server: \
+    rsync-server: #17 [14/17] RUN sed -i -e 's/\\(UsePAM \\)yes/\\1 no/' /etc/ssh/sshd_config\
+    rsync-server: #17 sha256:ac37d5f10516251878d194f5de6156750f90ca1605d265e96f0242e0646dce25\
+    rsync-server: #17 CACHED\
+    rsync-server: \
+    rsync-server: #13 [10/17] RUN echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPtxh72mgtYtTKFbfcPl4XYk0DWrWucC7mp5A6SqaWa" > /home/vagrant/.ssh/authorized_keys\
+    rsync-server: #13 sha256:c5a817b124783d5f2b15e2ee9093acd657653021f52b184c9a15e5360034fdad\
+    rsync-server: #13 CACHED\
+    rsync-server: \
+    rsync-server: #20 [17/17] RUN /usr/sbin/sshd\
+    rsync-server: #20 sha256:7a48295708245a2cc232d1d1fae18f68050d95062b060431b3064ff2d0e13bf9\
+    rsync-server: #20 CACHED\
+    rsync-server: \
+    rsync-server: #21 exporting to image\
+    rsync-server: #21 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00\
+    rsync-server: #21 exporting layers done\
+    rsync-server: #21 writing image sha256:e765e1740e3fd0620837053fc2175cbb3b8954b24c93fda10dded319ecb89228 done\
+    rsync-server: #21 DONE 0.0s\
+    client: \
+    client: #4 [ 1/17] FROM docker.io/library/ubuntu:latest@sha256:b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac\
+    client: #4 sha256:a1241956e44e04eee873e401b1b99204edb39bb7793f7f24fa4077499928974e\
+    client: #4 DONE 0.0s\
+    client: \
+    client: #11 [ 8/17] RUN mkdir -p /home/vagrant/.ssh\
+    client: #11 sha256:c6c47f92e3e9fb0e0ac879c36c26dbb6d9507adc2166fcb4a4fac6eac14c8294\
+    client: #11 CACHED\
+    client: \
+    client: #18 [15/17] RUN echo 'll = "ls -lah"' >> /etc/environment\
+    client: #18 sha256:09085b29850c2ed23aa6549f279161f33addc30ee00d04f42561b3df1ffcd011\
+    client: #18 CACHED\
+    client: \
+    client: #19 [16/17] RUN mkdir /var/run/sshd\
+    client: #19 sha256:887dde3fe739ebd543ebe3539d2dd8a3a3fd5a8753440507ee6c7d44392e8fc2\
+    client: #19 CACHED\
+    client: \
+    client: #13 [10/17] RUN echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPtxh72mgtYtTKFbfcPl4XYk0DWrWucC7mp5A6SqaWa" > /home/vagrant/.ssh/authorized_keys\
+    client: #13 sha256:c5a817b124783d5f2b15e2ee9093acd657653021f52b184c9a15e5360034fdad\
+    client: #13 CACHED\
+    client: \
+    client: #8 [ 5/17] RUN echo -n 'vagrant:vagrant' | chpasswd\
+    client: #8 sha256:71c9a268f07b0997945ab01480c00f22a7d04bd8fe6bc7e626f02c4af5d98db3\
+    client: #8 CACHED\
+    client: \
+    client: #12 [ 9/17] RUN chmod 700 /home/vagrant/.ssh\
+    client: #12 sha256:f4e101e8ddf47e235c8a1c23d508e28d6b806acb20d4236cd372b1f4c186c232\
+    client: #12 CACHED\
+    client: \
+    client: #6 [ 3/17] RUN apt-get install -y --no-install-recommends ssh sudo libffi-dev systemd openssh-server net-tools iproute2 vim\
+    client: #6 sha256:b27e7919875f64c222f502bd184f483b29a7903201af61dc1ae8e41caaa9cec1\
+    client: #6 CACHED\
+    client: \
+    client: #9 [ 6/17] RUN echo 'vagrant ALL = NOPASSWD: ALL' > /etc/sudoers.d/vagrant\
+    client: #9 sha256:2c3cc7cc348b72763e54e26469e6d974eb925369849bb18980039e845acf7f79\
+    client: #9 CACHED\
+    client: \
+    client: #5 [ 2/17] RUN apt-get update -y && apt-get dist-upgrade -y\
+    client: #5 sha256:4b06f7951164aa5af988465798d6ee491499e84facf3260adf53ea7f080ec82e\
+    client: #5 CACHED\
+    client: \
+    client: #7 [ 4/17] RUN useradd --create-home -s /bin/bash vagrant\
+    client: #7 sha256:095394ffb1949f9a87e65f112ded489a3d2e582a2d9c5383ca179ed1375f3a78\
+    client: #7 CACHED\
+    client: \
+    client: #14 [11/17] RUN chmod 600 /home/vagrant/.ssh/authorized_keys\
+    client: #14 sha256:10ca4440ed2b5e28a8bb2e8f8d0c5a2794145a86db814335a13df8211ccab33a\
+    client: #14 CACHED\
+    client: \
+    client: #15 [12/17] RUN chown -R vagrant:vagrant /home/vagrant/.ssh\
+    client: #15 sha256:1d4c3deaa98d4df983e3c3b65f6f0237d2512ada93fffa55ee5c3106e7e9a9ae\
+    client: #15 CACHED\
+    client: \
+    client: #16 [13/17] RUN sed -i -e 's/Defaults.*requiretty/#&/' /etc/sudoers\
+    client: #16 sha256:137bed0bbab527b2211f244d87bf580397ce31c10212b60c3b5d5ea25dd2418a\
+    client: #16 CACHED\
+    client: \
+    client: #17 [14/17] RUN sed -i -e 's/\\(UsePAM \\)yes/\\1 no/' /etc/ssh/sshd_config\
+    client: #17 sha256:ac37d5f10516251878d194f5de6156750f90ca1605d265e96f0242e0646dce25\
+    client: #17 CACHED\
+    client: \
+    client: #10 [ 7/17] RUN chmod 440 /etc/sudoers.d/vagrant\
+    client: #10 sha256:40fe226328114273b805b819c60c500811c4179d250c221d706a830b3035c6d0\
+    client: #10 CACHED\
+    client: \
+    client: #20 [17/17] RUN /usr/sbin/sshd\
+    client: #20 sha256:7a48295708245a2cc232d1d1fae18f68050d95062b060431b3064ff2d0e13bf9\
+    client: #20 CACHED\
+    client: \
+    client: #21 exporting to image\
+    client: #21 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00\
+    client: #21 exporting layers done\
+    client: #21 writing image sha256:e765e1740e3fd0620837053fc2175cbb3b8954b24c93fda10dded319ecb89228 done\
+    client: #21 DONE 0.0s\
+    client: \
+    client: Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them\
+    rsync-server: \
+    rsync-server: Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them\
+    rsync-server: \
+    rsync-server: Image: e765e1740e3fd0620837053fc2175cbb3b8954b24c93fda10dded319ecb89228\
+    client: \
+    client: Image: e765e1740e3fd0620837053fc2175cbb3b8954b24c93fda10dded319ecb89228\
+
+\f1\b ==> rsync-server: Creating the container...
+\f0\b0 \
+    rsync-server:   Name: Vagrant_rsync-server_1657824037\
+    rsync-server:  Image: e765e1740e3fd0620837053fc2175cbb3b8954b24c93fda10dded319ecb89228\
+    rsync-server: Volume: /Users/boriskoltun/Documents/DevOps_courses/Vagrant:/vagrant\
+    rsync-server:   Port: 127.0.0.1:2222:22\
+
+\f1\b ==> client: Fixed port collision for 22 => 2222. Now on port 2200.
+\f0\b0 \
+
+\f1\b ==> client: Creating the container...
+\f0\b0 \
+    client:   Name: Vagrant_client_1657824037\
+    client:  Image: e765e1740e3fd0620837053fc2175cbb3b8954b24c93fda10dded319ecb89228\
+    client: Volume: /Users/boriskoltun/Documents/DevOps_courses/Vagrant:/vagrant\
+    client:   Port: 127.0.0.1:2200:22\
+    client:  \
+    client: Container created: b20775eb23fb9fdd\
+    rsync-server:  \
+    rsync-server: Container created: 3094f902f169e4ce\
+
+\f1\b ==> client: Enabling network interfaces...
+\f0\b0 \
+
+\f1\b ==> rsync-server: Enabling network interfaces...
+\f0\b0 \
+
+\f1\b ==> client: Starting container...
+\f0\b0 \
+
+\f1\b ==> rsync-server: Starting container...
+\f0\b0 \
+
+\f1\b ==> client: Waiting for machine to boot. This may take a few minutes...
+\f0\b0 \
+
+\f1\b ==> rsync-server: Waiting for machine to boot. This may take a few minutes...
+\f0\b0 \
+    client: SSH address: 127.0.0.1:2200\
+    client: SSH username: vagrant\
+    client: SSH auth method: private key\
+    rsync-server: SSH address: 127.0.0.1:2222\
+    rsync-server: SSH username: vagrant\
+    rsync-server: SSH auth method: private key\
+
+\f1\b ==> client: Machine booted and ready!
+\f0\b0 \
+
+\f1\b ==> rsync-server: Machine booted and ready!
+\f0\b0 \
+
+\f1\b ==> client: Running provisioner: shell...
+\f0\b0 \
+
+\f1\b ==> rsync-server: Running provisioner: shell...
+\f0\b0 \
+    client: Running: inline script\
+    rsync-server: Running: inline script\
+\cf3     client: \cf2 \
+\cf3     client: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.\cf2 \
+\cf3     client: \cf2 \
+\cf3     rsync-server: \cf2 \
+\cf3     rsync-server: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.\cf2 \
+\cf3     rsync-server: \cf2 \
+\cf4     client: Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease\cf2 \
+\cf4     rsync-server: Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease\cf2 \
+\cf4     client: Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [114 kB]\cf2 \
+\cf4     rsync-server: Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [114 kB]\cf2 \
+\cf4     client: Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [99.8 kB]\cf2 \
+\cf4     rsync-server: Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [99.8 kB]\cf2 \
+\cf4     client: Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [110 kB]\cf2 \
+\cf4     rsync-server: Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [110 kB]\cf2 \
+\cf4     client: Get:5 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [457 kB]\cf2 \
+\cf4     rsync-server: Get:5 http://ports.ubuntu.com/ubuntu-ports jammy-updates/restricted arm64 Packages [77.0 kB]\cf2 \
+\cf4     rsync-server: Get:6 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [203 kB]\cf2 \
+\cf4     rsync-server: Get:7 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [457 kB]\cf2 \
+\cf4     client: Get:6 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [203 kB]\cf2 \
+\cf4     client: Get:7 http://ports.ubuntu.com/ubuntu-ports jammy-updates/restricted arm64 Packages [77.0 kB]\cf2 \
+\cf4     client: Get:8 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 Packages [261 kB]\cf2 \
+\cf4     rsync-server: Get:8 http://ports.ubuntu.com/ubuntu-ports jammy-security/universe arm64 Packages [106 kB]\cf2 \
+\cf4     rsync-server: Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-security/restricted arm64 Packages [61.7 kB]\cf2 \
+\cf4     rsync-server: Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 Packages [261 kB]\cf2 \
+\cf4     client: Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-security/restricted arm64 Packages [61.7 kB]\cf2 \
+\cf4     client: Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-security/universe arm64 Packages [106 kB]\cf2 \
+\cf4     client: Fetched 1490 kB in 1s (1124 kB/s)\cf2 \
+\cf4     rsync-server: Fetched 1490 kB in 1s (1095 kB/s)\cf2 \
+\cf4     client: Reading package lists...\cf2 \
+\cf4     rsync-server: Reading package lists...\cf2 \
+\cf4     client: Building dependency tree...\cf2 \
+\cf4     client: Reading state information...\cf2 \
+\cf4     client: 3 packages can be upgraded. Run 'apt list --upgradable' to see them.\cf2 \
+\cf3     client: \cf2 \
+\cf4     rsync-server: Building dependency tree...\cf2 \
+\cf3     client: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.\cf2 \
+\cf4     rsync-server: Reading state information...\cf2 \
+\cf3     client: \cf2 \
+\cf4     rsync-server: 3 packages can be upgraded. Run 'apt list --upgradable' to see them.\cf2 \
+\cf3     rsync-server: \cf2 \
+\cf3     rsync-server: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.\cf2 \
+\cf3     rsync-server: \cf2 \
+\cf4     client: Reading package lists...\cf2 \
+\cf4     rsync-server: Reading package lists...\cf2 \
+\cf4     client: Building dependency tree...\cf2 \
+\cf4     client: Reading state information...\cf2 \
+\cf4     rsync-server: Building dependency tree...\cf2 \
+\cf4     rsync-server: Reading state information...\cf2 \
+\cf4     client: The following additional packages will be installed:\cf2 \
+\cf4     client:   libpopt0\cf2 \
+\cf4     client: Suggested packages:\cf2 \
+\cf4     client:   python3\cf2 \
+\cf4     client: The following NEW packages will be installed:\cf2 \
+\cf4     client:   libpopt0 rsync\cf2 \
+\cf4     rsync-server: The following additional packages will be installed:\cf2 \
+\cf4     rsync-server:   libpopt0\cf2 \
+\cf4     rsync-server: Suggested packages:\cf2 \
+\cf4     rsync-server:   python3\cf2 \
+\cf4     rsync-server: The following NEW packages will be installed:\cf2 \
+\cf4     rsync-server:   libpopt0 rsync\cf2 \
+\cf4     client: 0 upgraded, 2 newly installed, 0 to remove and 3 not upgraded.\cf2 \
+\cf4     client: Need to get 423 kB of archives.\cf2 \
+\cf4     client: After this operation, 858 kB of additional disk space will be used.\cf2 \
+\cf4     client: Get:1 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libpopt0 arm64 1.18-3build1 [28.0 kB]\cf2 \
+\cf4     rsync-server: 0 upgraded, 2 newly installed, 0 to remove and 3 not upgraded.\cf2 \
+\cf4     rsync-server: Need to get 423 kB of archives.\cf2 \
+\cf4     rsync-server: After this operation, 858 kB of additional disk space will be used.\cf2 \
+\cf4     rsync-server: Get:1 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libpopt0 arm64 1.18-3build1 [28.0 kB]\cf2 \
+\cf4     client: Get:2 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 rsync arm64 3.2.3-8ubuntu3 [395 kB]\cf2 \
+\cf4     rsync-server: Get:2 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 rsync arm64 3.2.3-8ubuntu3 [395 kB]\cf2 \
+\cf3     rsync-server: debconf: delaying package configuration, since apt-utils is not installed\cf2 \
+\cf3     client: debconf: delaying package configuration, since apt-utils is not installed\cf2 \
+\cf4     rsync-server: Fetched 423 kB in 1s (758 kB/s)\cf2 \
+\cf4     client: Fetched 423 kB in 1s (728 kB/s)\cf2 \
+\cf4     rsync-server: Selecting previously unselected package libpopt0:arm64.\cf2 \
+\cf4 (Reading database ... 8471 files and directories currently installed.)\cf2 \
+\cf4     rsync-server: Preparing to unpack .../libpopt0_1.18-3build1_arm64.deb ...\cf2 \
+\cf4     client: Selecting previously unselected package libpopt0:arm64.\cf2 \
+\cf4     rsync-server: Unpacking libpopt0:arm64 (1.18-3build1) ...\cf2 \
+\cf4 (Reading database ... 8471 files and directories currently installed.)\cf2 \
+\cf4     client: Preparing to unpack .../libpopt0_1.18-3build1_arm64.deb ...\cf2 \
+\cf4     client: Unpacking libpopt0:arm64 (1.18-3build1) ...\cf2 \
+\cf4     rsync-server: Selecting previously unselected package rsync.\cf2 \
+\cf4     rsync-server: Preparing to unpack .../rsync_3.2.3-8ubuntu3_arm64.deb ...\cf2 \
+\cf4     rsync-server: Unpacking rsync (3.2.3-8ubuntu3) ...\cf2 \
+\cf4     client: Selecting previously unselected package rsync.\cf2 \
+\cf4     client: Preparing to unpack .../rsync_3.2.3-8ubuntu3_arm64.deb ...\cf2 \
+\cf4     client: Unpacking rsync (3.2.3-8ubuntu3) ...\cf2 \
+\cf4     rsync-server: Setting up libpopt0:arm64 (1.18-3build1) ...\cf2 \
+\cf4     client: Setting up libpopt0:arm64 (1.18-3build1) ...\cf2 \
+\cf4     rsync-server: Setting up rsync (3.2.3-8ubuntu3) ...\cf2 \
+\cf4     client: Setting up rsync (3.2.3-8ubuntu3) ...\cf2 \
+\cf4     rsync-server: invoke-rc.d: policy-rc.d denied execution of start.\cf2 \
+\cf4     client: invoke-rc.d: policy-rc.d denied execution of start.\cf2 \
+\cf4     client: /usr/sbin/policy-rc.d returned 101, not running 'start rsync.service'\cf2 \
+\cf4     rsync-server: /usr/sbin/policy-rc.d returned 101, not running 'start rsync.service'\cf2 \
+\cf4     client: Processing triggers for libc-bin (2.35-0ubuntu3) ...\cf2 \
+\cf4     rsync-server: Processing triggers for libc-bin (2.35-0ubuntu3) ...\cf2 \
+\cf4     rsync-server: Starting rsync (via systemctl): rsync.service.\cf2 \
+\cf4     rsync-server: Restarting rsync (via systemctl): rsync.service.\cf2 \
+\cf4     client: opening tcp connection to 172.18.0.2 port 873\cf2 \
+\cf4     client: sending daemon args: --server --sender -vvlogDtpre.iLsfxCIvu . data1/  (5 args)\cf2 \
+\cf4     client: receiving incremental file list\cf2 \
+\cf4     client: delta-transmission enabled\cf2 \
+\cf4     client: small\cf2 \
+\cf4     client: big-files/\cf2 \
+\cf4     client: big-files/big\cf2 \
+\cf4     client: \cf2 \
+\cf4     client: sent 77 bytes  received 3,227,256,264 bytes  586,773,880.18 bytes/sec\cf2 \
+\cf4     client: total size is 3,226,468,352  speedup is 1.00}
