@@ -1,0 +1,37 @@
+vagrant@ubuntu:~$ ./script4.sh 
+Choose script number from homework (from 1 to 3) or 0 to exit
+1
+Enter numbers you want to multiple: 
+2
+4
+Result is even
+Choose script number from homework (from 1 to 3) or 0 to exit
+1
+Enter numbers you want to multiple: 
+1
+3
+Result isn't even
+Choose script number from homework (from 1 to 3) or 0 to exit
+2
+Enter directory in format /home
+/home 
+/home/vagrant/.bash_logout
+/home/vagrant/.bashrc
+/home/vagrant/.profile
+/home/vagrant/.ssh/authorized_keys
+/home/vagrant/.viminfo
+/home/vagrant/script1.sh
+/home/vagrant/script2.sh
+/home/vagrant/script3.sh
+/home/vagrant/script4.sh
+Choose script number from homework (from 1 to 3) or 0 to exit
+3
+Array items:
+   one
+   two
+   three
+   four
+   five
+Choose script number from homework (from 1 to 3) or 0 to exit
+0
+vagrant@ubuntu:~$ 
