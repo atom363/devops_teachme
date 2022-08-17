@@ -1,4 +1,6 @@
-while [ 1 = 1 ]
+#!/bin/bash
+
+while true
 do
         echo "Choose script number from homework (from 1 to 3) or 0 to exit"
         read key
