@@ -3,8 +3,12 @@ apt install -y apache2 nginx
 echo "Listen 8084" > /etc/apache2/ports.conf
 rm /etc/apache2/sites-available/*
 rm /etc/apache2/sites-enabled/*
+rm /etc/nginx/sites-available/*
+rm /etc/nginx/sites-enabled/*
 mkdir /opt/apache2
+mkdir /opt/nginx
 echo "Hello World!" > /opt/apache2/test.txt
+echo "Hello World!" > /opt/nginx/test.txt
 cat <<\EOF > /opt/apache2/test.html
 <!DOCTYPE html>
 <html>
@@ -16,7 +20,19 @@ cat <<\EOF > /opt/apache2/test.html
     </body>
 </html>
 EOF
+cat <<\EOF > /opt/nginx/test.html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Example</title>
+    </head>
+    <body>
+        <p>This is an example of a simple HTML page with one paragraph.</p>
+    </body>
+</html>
+EOF
 chown -R www-data: /opt/apache2/
+chown -R www-data: /opt/nginx/
 cat <<\EOF > /etc/apache2/sites-available/mysite.conf
 <VirtualHost *:8084>
 
@@ -33,6 +49,19 @@ DocumentRoot /opt/apache2/
 EOF
 a2ensite mysite
 /etc/init.d/apache2 start
+cat <<\EOF > /etc/nginx/conf.d/mysite.conf
+server {
+        listen 8085 default_server;
+        listen [::]:8085 default_server;
+        root /opt/nginx;
+        index test.html;
+        server_name _;
+        location / {
+                try_files \\$uri \\$uri/ =404;
+        }
+      }
+EOF
+/etc/init.d/nginx start
 END
 
 
