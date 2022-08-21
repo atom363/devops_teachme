@@ -1,0 +1,113 @@
+$script = <<"END"
+apt install -y nginx openssl
+rm /etc/nginx/sites-available/*
+rm /etc/nginx/sites-enabled/*
+mkdir /opt/nginx
+cat <<\EOF > /opt/nginx/index.html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Example</title>
+    </head>
+    <body>
+        <p>This is an example of a simple HTML page with one paragraph.</p>
+    </body>
+</html>
+EOF
+chown -R www-data: /opt/nginx/
+mkdir -p /etc/nginx/ssl/cert
+mkdir -p /etc/nginx/ssl/private
+openssl req -subj "/CN=mysite.local/O=Boris Koltun/C=BY" -new -newkey rsa:2048 -sha256 -days 365 -nodes -x509 -keyout /etc/nginx/ssl/private/mysite.key -out /etc/nginx/ssl/cert/mysite.crt -addext "subjectAltName=DNS:mysite.local,DNS:www.mysite.local,IP:127.0.0.1"
+openssl dhparam -out /etc/nginx/dhparam.pem 2048
+cat <<\EOF > /etc/nginx/snippets/self-signed.conf
+ssl_certificate /etc/nginx/ssl/cert/mysite.crt;
+ssl_certificate_key /etc/nginx/ssl/private/mysite.key;
+EOF
+cat <<\EOF > /etc/nginx/snippets/ssl-params.conf
+ssl_protocols TLSv1.3;
+ssl_prefer_server_ciphers on;
+ssl_dhparam /etc/nginx/dhparam.pem; 
+ssl_ciphers EECDH+AESGCM:EDH+AESGCM;
+ssl_ecdh_curve secp384r1;
+ssl_session_timeout  10m;
+ssl_session_cache shared:SSL:10m;
+ssl_session_tickets off;
+ssl_stapling on;
+ssl_stapling_verify on;
+resolver 8.8.8.8 8.8.4.4 valid=300s;
+resolver_timeout 5s;
+# Disable strict transport security for now. You can uncomment the following
+# line if you understand the implications.
+#add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";
+add_header X-Frame-Options DENY;
+add_header X-Content-Type-Options nosniff;
+add_header X-XSS-Protection "1; mode=block";
+EOF
+cat <<\EOF > /etc/nginx/conf.d/mysite.conf
+server {
+        listen 443 ssl;
+        listen [::]:443 ssl;
+        include snippets/self-signed.conf;
+        include snippets/ssl-params.conf;
+
+        server_name www.mysite.local;
+
+        return 301 https://mysite.local;
+    }
+server {
+        listen 80;
+        listen [::]:80;
+
+        server_name mysite.local www.mysite.local;
+
+        return 301 https://mysite.local;
+  }
+server {
+        listen 443 ssl;
+        listen [::]:443 ssl;
+        include snippets/self-signed.conf;
+        include snippets/ssl-params.conf;
+        root /opt/nginx;
+        index index.html;
+        server_name mysite.local;
+        location / {
+                try_files \\$uri \\$uri/ =404;
+        }
+      }
+EOF
+/etc/init.d/nginx start
+END
+
+
+Vagrant.configure(2) do |config|
+  # Path to ssh key
+  config.ssh.private_key_path = "/Users/boriskoltun/.ssh/id_ed25519"
+
+  # VM definition
+  config.vm.define "ubuntu", primary: true do |srv|
+    srv.vm.hostname = "ubuntu"
+    srv.vm.network "forwarded_port", id: "nginx", host: 80, guest: 80
+    srv.vm.network "forwarded_port", id: "nginx-ssl", host: 443, guest: 443
+    srv.vm.provision "shell", inline: $script
+  end
+
+  # Custom configuration for docker
+  config.vm.provider "docker" do |d, override|
+    # docker doesnt use boxes
+    override.vm.box = nil
+
+    # this is where your Dockerfile lives
+    d.build_dir = "."
+
+    # Make sure it sets up ssh with the Dockerfile
+    # Vagrant is pretty dependent on ssh
+    override.ssh.insert_key = true
+    d.has_ssh = true
+
+    # Configure Docker to allow access to more resources
+    d.privileged = true
+  end
+
+# ...
+
+end
