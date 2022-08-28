@@ -1,5 +1,8 @@
 #!/bin/bash
 
+mkdir /opt/mysql_backup
+mkdir /opt/postgresql_backup
+
 mysqldump -u root -pmynewpassword devops_mysql1 > /opt/mysql_backup/base1_backup_"$(date +%Y-%m-%d-%H)".sql
 mysqldump -u root -pmynewpassword devops_mysql2 > /opt/mysql_backup/base2_backup_"$(date +%Y-%m-%d-%H)".sql
 
