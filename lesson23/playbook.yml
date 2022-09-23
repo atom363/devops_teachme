@@ -1,0 +1,44 @@
+---
+
+- hosts: all
+  become: true
+
+  tasks:
+
+    - name: Install EPEL Repo
+      yum:
+        name=epel-release
+        state=present
+      when:
+        ansible_os_family == "RedHat"
+
+    - name: Install apps on Centos
+      yum:
+        state: latest
+        name:
+          - nginx
+          - wget
+          - htop
+      when:
+        ansible_os_family == "RedHat"
+      notify:
+        - start nginx
+
+    - name: Install apps on Ubuntu
+      apt:
+        state: latest
+        name:
+          - nginx
+          - wget
+          - htop
+      when:
+        ansible_os_family == "Debian"
+      notify:
+        - start nginx
+
+  handlers:
+    - name: start nginx
+      systemd:
+        name: nginx
+        enabled: yes
+        state: started
