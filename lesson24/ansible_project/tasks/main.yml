@@ -1,0 +1,65 @@
+---
+# tasks file for ansible_project
+
+  - name: Update cache on Centos
+    yum:
+      update_cache: yes
+    when:
+        ansible_os_family == "RedHat"
+
+  - name: Update all packages on Centos
+    yum:
+      state: latest
+      name: "*"
+    when:
+        ansible_os_family == "RedHat"
+    notify:
+      - reboot system
+
+  - name: Update cache on Ubuntu
+    apt:
+      update_cache: yes
+    when:
+        ansible_os_family == "Debian"
+
+  - name: Update all packages on Ubuntu
+    apt:
+      state: latest
+      name: "*"
+    when:
+        ansible_os_family == "Debian"
+    notify:
+      - reboot system
+
+  - name: Create group students
+    group:
+      name: students
+      state: present
+
+  - name: Create user bob
+    user:
+      name: bob
+      group: students
+
+  - name: Create directory for bob
+    file:
+      path: /opt/bob
+      state: directory
+      owner: bob
+      group: students
+      mode: '770'
+
+  - name: Create directory for students
+    file:
+      path: /opt/students
+      state: directory
+      owner: root
+      group: students
+      mode: '770'
+
+  - name: Add bob to sudoers
+    community.general.sudoers:
+      name: bob-sudo
+      user: bob
+      commands: ALL
+  
