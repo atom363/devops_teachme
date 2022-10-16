@@ -1,0 +1,22 @@
+---
+# tasks file for nginx
+
+    - name: Install EPEL Repo
+      yum:
+        name=epel-release
+        state=present
+      when:
+        ansible_os_family == "RedHat"
+
+    - name: Install nginx
+      package:
+        state: latest
+        name:
+          - nginx
+      notify:
+        - start nginx
+
+    - name: Disable default site
+      file: 
+        path: /etc/nginx/sites-enabled/default
+        state: absent

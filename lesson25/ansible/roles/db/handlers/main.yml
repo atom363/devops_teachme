@@ -1,0 +1,18 @@
+---
+# handlers file for db
+
+- name: start mysql rhel
+  systemd:
+    name: mysqld
+    enabled: yes
+    state: started
+  when:
+    ansible_os_family == "RedHat"
+
+- name: start mysql debian
+  systemd:
+    name: mysql
+    enabled: yes
+    state: started
+  when:
+    ansible_os_family == "Debian"
