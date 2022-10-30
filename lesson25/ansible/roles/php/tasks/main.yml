@@ -1,2 +1,44 @@
 ---
 # tasks file for php
+    - name: Install php-fpm and deps rhel
+      package: name={{ item }} state=present
+      with_items:
+        - php 
+        - php-mysqlnd 
+        - php-fpm 
+        - php-opcache 
+        - php-gd 
+        - php-xml 
+        - php-mbstring
+      when: ansible_os_family == "RedHat"
+    
+    - name: Install php-fpm and deps debian
+      package: name={{ item }} state=present
+      with_items:
+        - php
+        - php-fpm
+        - php-enchant
+        - php-mbstring
+        - php-mysql
+        - php-xml
+      when: ansible_os_family == "Debian"
+
+    - name: Disable default pool rhel
+      command: mv /etc/php-fpm.d/www.conf /etc/php-fpm.d/www.disabled creates=/etc/php-fpm.d/www.disabled
+      notify: restart php-fpm rhel
+      when: ansible_os_family == "RedHat"
+
+    - name: Disable default pool debian
+      command: mv /etc/php/8.1/fpm/pool.d/www.conf /etc/php/8.1/fpm/pool.d/www.disabled creates=/etc/php/8.1/fpm/pool.d/www.disabled
+      notify: restart php-fpm debian
+      when: ansible_os_family == "Debian"
+
+    - name: Copy php-fpm configuration rhel
+      template: src=wordpress.conf dest=/etc/php-fpm.d/
+      notify: restart php-fpm rhel
+      when: ansible_os_family == "RedHat"
+
+    - name: Copy php-fpm configuration debian
+      template: src=wordpress_ubuntu.conf dest=/etc/php/8.1/fpm/pool.d/
+      notify: restart php-fpm debian
+      when: ansible_os_family == "Debian"

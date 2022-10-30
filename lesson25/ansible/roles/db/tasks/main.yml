@@ -36,6 +36,7 @@
         login_unix_socket: /var/run/mysqld/mysqld.sock
       when:
         ansible_os_family == "Debian"
+      ignore_errors: true
 
     - name: Set MySQL root Password RHEL
       mysql_user:
@@ -47,6 +48,7 @@
         state: present
       when:
         ansible_os_family == "RedHat"
+      ignore_errors: true
 
     - name: Removes all anonymous user accounts
       mysql_user:
