@@ -16,6 +16,12 @@
       notify:
         - start nginx
 
-    - name: Copy nginx configuration for wordpress
-      template: src=default.conf dest=/etc/nginx/conf.d/default.conf
+    - name: Copy nginx configuration for wordpress rhel
+      template: src=default_rhel.conf dest=/etc/nginx/conf.d/default.conf
       notify: restart nginx
+      when: ansible_os_family == "RedHat"
+
+    - name: Copy nginx configuration for wordpress debian
+      template: src=default_debian.conf dest=/etc/nginx/conf.d/default.conf
+      notify: restart nginx
+      when: ansible_os_family == "Debian"

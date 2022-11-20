@@ -2,4 +2,4 @@
 # defaults file for nginx
 
   nginx_port: 8080
-  server_hostname: server.example.com
+  server_hostname: mysite.local
