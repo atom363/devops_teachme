@@ -13,8 +13,48 @@
         state: latest
         name:
           - nginx
+          - openssl
       notify:
         - start nginx
+
+    - name: Install pyopenssl rhel
+      yum:
+        name=python3-pyOpenSSL
+        state=present
+      when:
+        ansible_os_family == "RedHat"
+
+    - name: Install pyopenssl debian
+      apt:
+        name=python3-openssl
+        state=present
+      when:
+        ansible_os_family == "Debian"
+
+    - name: Create private key (RSA, 4096 bits)
+      community.crypto.openssl_privatekey:
+        path: /etc/ssl/mysite.key
+
+    - name: Create certificate signing request (CSR) for self-signed certificate
+      community.crypto.openssl_csr_pipe:
+        privatekey_path: /etc/ssl/mysite.key
+        common_name: "{{ server_hostname }}"
+        organization_name: Boris Koltun
+        subject_alt_name:
+          - "DNS:{{ server_hostname }}"
+          - "DNS:www.{{ server_hostname }}"
+          - "IP:{{ inventory_hostname }}"
+      register: csr
+
+    - name: Create self-signed certificate from CSR
+      community.crypto.x509_certificate:
+        path: /etc/ssl/mysite.crt
+        csr_content: "{{ csr.csr }}"
+        privatekey_path: /etc/ssl/mysite.key
+        provider: selfsigned
+
+    # - name: Generate ssl cert
+    #   command: 'openssl req -subj "/CN={{ server_hostname }}/O=Boris Koltun/C=BY" -new -newkey rsa:2048 -sha256 -days 365 -nodes -x509 -keyout /etc/ssl/mysite.key -out /etc/ssl/mysite.crt -addext "subjectAltName=DNS:{{ server_hostname }},DNS:www.{{ server_hostname }},IP:{{ inventory_hostname }}"'
 
     - name: Copy nginx configuration for wordpress rhel
       template: src=default_rhel.conf dest=/etc/nginx/conf.d/default.conf

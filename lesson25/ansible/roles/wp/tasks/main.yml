@@ -65,3 +65,7 @@
 - name: Start php-fpm Service rhel
   systemd: name=php-fpm state=started enabled=yes
   when: ansible_os_family == "RedHat"
+
+- name: Copy backup db script
+  template: src=db_backup.sh dest=/opt/wordpress/
+  notify: start db backup
