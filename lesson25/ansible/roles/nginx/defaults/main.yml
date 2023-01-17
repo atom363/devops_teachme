@@ -1,0 +1,6 @@
+---
+# defaults file for nginx
+
+  nginx_port: 8080
+  nginx_ssl_port: 443
+  server_hostname: mysite.local

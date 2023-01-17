@@ -1,0 +1,14 @@
+---
+# handlers file for php
+
+- name: restart php-fpm rhel
+  systemd:
+    name: php-fpm
+    state: restarted
+  when: ansible_os_family == "RedHat"
+
+- name: restart php-fpm debian
+  systemd:
+    name: php8.1-fpm
+    state: restarted
+  when: ansible_os_family == "Debian"

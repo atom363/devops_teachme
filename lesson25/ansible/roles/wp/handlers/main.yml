@@ -1,0 +1,5 @@
+---
+# handlers file for wp
+
+- name: start db backup
+  command: /bin/sh /opt/wordpress/db_backup.sh

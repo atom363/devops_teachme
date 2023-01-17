@@ -1,0 +1,11 @@
+---
+
+
+- hosts: all
+  become: true
+
+  roles:
+    - nginx
+    - db
+    - php
+    - wp

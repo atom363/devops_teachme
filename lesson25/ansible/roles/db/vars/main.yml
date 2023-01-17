@@ -1,0 +1,6 @@
+---
+# vars file for db
+
+
+  mysql_root_password: 'secure-root-pw'
+
